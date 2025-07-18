@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 19:56:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/05/27 21:20:45 by skomatsu         ###   ########.fr       */
+/*   Created: 2025/05/27 21:22:16 by skomatsu          #+#    #+#             */
+/*   Updated: 2025/07/12 14:03:16 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char *argv[])
+int init_arg(t_table *table, char **argv)
 {
-    if(ac != 5)
-        return(0);
-    
-    
+    int status;
+
+    status = 0;
+    table->philo_nbr = ft_atoi(argv[1]);
+
 }
