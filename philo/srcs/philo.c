@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:07:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:09:13 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/06 21:52:44 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void philo_think(t_philo *philo)
 {
     mutex_print(philo->table, philo->id, THINKING);
-    usleep(100);
 }
 
 void philo_sleep(t_philo *philo)
@@ -26,9 +25,20 @@ void philo_sleep(t_philo *philo)
 
 int check_continue(t_philo *philo)
 {
-    return (!is_simulation_end(philo->table) &&
-            (philo->table->must_eat_count == -1 ||
-             philo->eat_count < philo->table->must_eat_count));
+    int count;
+    
+    if (is_simulation_end(philo->table))
+        return (0);
+    if (philo->table->must_eat_count != -1)
+    {
+        pthread_mutex_lock(&philo->table->death_mutex);
+        count = philo->eat_count;
+        pthread_mutex_unlock(&philo->table->death_mutex);
+        
+        if (count >= philo->table->must_eat_count)
+            return (0);
+    }
+    return (1);    
 }
 
 void *philosopher_life(void *arg)
@@ -37,7 +47,7 @@ void *philosopher_life(void *arg)
     
     philo = (t_philo *)arg;
     if (philo->id % 2 == 0)
-        usleep(100);    
+        usleep(50);    
     while(check_continue(philo))
     {
         philo_think(philo);

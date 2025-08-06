@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:16 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:00:57 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/06 21:24:03 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ t_table *init_table(int argc, char **argv)
     if (!table)
         return (NULL);
     init_table_values(table, argc, argv);
-    if (init_table_memory(table))
+    if (init_table_memory(table) != 0)
         return (NULL);
-    if (init_table_mutex(table))
+    if (init_table_mutex(table) != 0)
     {
         free(table->forks);
         free(table->philos);

@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:56:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:00:10 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/06 21:24:42 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
         return (0);
     init_philo(table);
     threads = malloc(sizeof(pthread_t) * table->philo_count);
-    if(!threads || create_threads(table, &monitor, threads))
+    if(!threads || create_threads(table, &monitor, threads) != 0)
         return (1);
     join_threads(table, monitor, threads);
     free(threads);

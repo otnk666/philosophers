@@ -1,11 +1,11 @@
 NAME	= philo
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -pthread
 SRCS_DIR	= ./srcs
 UTILI_DIR	= ./srcs/utili
 INC_DIR		= ./includes
 
-RM		= rm -r
+RM		= rm -f
 
 SRCS =	$(SRCS_DIR)/main.c \
 		$(SRCS_DIR)/init.c \
