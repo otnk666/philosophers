@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/07/31 18:49:42 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/05 23:37:23 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,42 @@
 
 typedef struct s_table t_table;
 
-// typedef struct s_philo
-// {
-//     int id;
-//     long last_eat_time;
-//     int meals_eaten;
-//     pthread_t thread;
-//     pthread_mutex_t *r_fork;
-//     pthread_mutex_t *l_fork;
-//     t_table *table;
-// }   t_philo;
+typedef struct s_philo
+{
+    int id;
+    int eat_count;
+    long last_meal_time;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t *right_fork;
+    t_table *table;
+} t_philo;
 
-// typedef struct s_monitor
-// {
-//     pthread_t   thread;
-//     pthread_mutex_t mutex;
-//     bool    is_stop;
-// }   t_monitor;
-
-// typedef struct s_table
-// {
-//     int     philo_nbr;
-//     long    time_to_die;
-//     long    time_to_eat;
-//     long    time_to_sleep;
-//     long    limit_meals;
-//     long    start_time;
-//     bool    is_set;
-
-//     pthread_mutex_t *forks;
-//     pthread_mutex_t print_mutex;
-//     t_philo *philos;
-//     t_monitor   monitor;
-// } t_table;
+typedef struct s_table
+{
+    int philo_count;
+    long start_time;
+    int time_to_eat;
+    int time_to_sleep;
+    int time_to_die;
+    int simulation_end;
+    int must_eat_count;
+    
+    pthread_mutex_t *forks;
+    pthread_mutex_t print_mutex;
+    pthread_mutex_t death_mutex;
+    t_philo *philos;
+} t_table;
 
 int     ft_fputs(char *s, int fd);
 int     ft_atoi(const char *str);
+long    get_time(void);
+void    mutex_print(t_table *table, int id, char *action);
+int     is_simulation_end(t_table *table);
+void    set_simulation_end(t_table *table);
+void    *monitor_philosophers(void *arg);
+void    *philosopher_life(void *arg);
+void    cleanup_table(t_table *table);
+void    init_philo(t_table *table);
+t_table *init_table(int argc, char **argv);
 
 #endif

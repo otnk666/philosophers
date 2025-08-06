@@ -6,29 +6,40 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 05:01:00 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/07/25 05:14:32 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/05 02:43:31 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int     ft_fputs(char *s, int fd)
+long get_time(void)
 {
-    int l;
-    int ret;
-
-    ret = 0;
-    if(!s)
-        ret = write(fd,"(null)", 6);
-    else
-    {
-        l = 0;
-        while(s[l])
-            l++;
-        ret = write(fd, s, l);
-    }
-    if (ret < 0)
-        return (-1);
-    return(ret);
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
+void mutex_print(t_table *table, int id, char *action)
+{
+    pthread_mutex_lock(&table->print_mutex);
+    if (!table->simulation_end)
+        printf("%ld %d %s\n", get_time() - table->start_time, id, action);
+    pthread_mutex_unlock(&table->print_mutex);
+}
+
+int is_simulation_end(t_table *table)
+{
+    int end;
+    end = 0;
+    pthread_mutex_lock(&table->death_mutex);
+    end = table->simulation_end;
+    pthread_mutex_unlock(&table->death_mutex);
+    return (end);
+}
+
+void set_simulation_end(t_table *table)
+{
+    pthread_mutex_lock(&table->death_mutex);
+    table->simulation_end = 1;
+    pthread_mutex_unlock(&table->death_mutex);
+}
