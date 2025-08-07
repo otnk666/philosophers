@@ -6,15 +6,16 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:07:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:52:44 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/07 18:47:20 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void philo_think(t_philo *philo)
-{
+{   
     mutex_print(philo->table, philo->id, THINKING);
+    ft_usleep(100);
 }
 
 void philo_sleep(t_philo *philo)

@@ -16,7 +16,8 @@ SRCS =	$(SRCS_DIR)/main.c \
 		$(SRCS_DIR)/error.c \
 		$(UTILI_DIR)/utili.c \
 		$(UTILI_DIR)/ft_atoi.c \
-		$(UTILI_DIR)/ft_fputs.c
+		$(UTILI_DIR)/ft_fputs.c \
+		$(UTILI_DIR)/ft_usleep.c
 
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:02:23 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/07 22:13:38 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,23 @@
 
 typedef struct s_table t_table;
 
+typedef struct s_fork
+{
+    int id;
+    pthread_mutex_t mutex;
+    int available;
+    int last_used;
+} t_fork;
+
 typedef struct s_philo
 {
     int id;
     int eat_count;
     long last_meal_time;
-    pthread_mutex_t *left_fork;
-    pthread_mutex_t *right_fork;
+    t_fork *left_fork;
+    t_fork *right_fork;
+    t_fork *first_fork;
+    t_fork *second_fork;
     t_table *table;
 } t_philo;
 
@@ -50,7 +60,7 @@ typedef struct s_table
     int simulation_end;
     int must_eat_count;
     
-    pthread_mutex_t *forks;
+    t_fork *forks;
     pthread_mutex_t print_mutex;
     pthread_mutex_t death_mutex;
     t_philo *philos;
@@ -59,6 +69,7 @@ typedef struct s_table
 int     ft_fputs(char *s, int fd);
 int     ft_atoi(const char *str);
 long    get_time(void);
+void    ft_usleep(long time);
 void    mutex_print(t_table *table, int id, char *action);
 int     is_simulation_end(t_table *table);
 void    set_simulation_end(t_table *table);

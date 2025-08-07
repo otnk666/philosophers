@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   ft_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 16:56:28 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/07 22:26:29 by skomatsu         ###   ########.fr       */
+/*   Created: 2025/08/07 17:45:26 by skomatsu          #+#    #+#             */
+/*   Updated: 2025/08/07 20:16:06 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void cleanup_mutex(t_table *table)
+void ft_usleep(long time)
 {
-    int i;
-
-    i = 0;
-    while (i < table->philo_count)
-    {
-        pthread_mutex_destroy(&table->forks[i].mutex);
-        i++;
-    }
-    pthread_mutex_destroy(&table->print_mutex);
-    pthread_mutex_destroy(&table->death_mutex);
-}
-
-void cleanup_table(t_table *table)
-{
-    if(!table)
+    long    start;
+    long    target;
+    long    current;
+    long    elapsed;
+    
+    if (time <= 0)
         return;
-    cleanup_mutex(table);
-    free(table->forks);
-    free(table->philos);
-    free(table);
+
+    start = get_time();
+    target = time;
+    if (time > 5000)
+        usleep((time - 2000));
+        
+    while (1)
+    {
+        current = get_time();
+        elapsed = (current - start) * 1000;
+        if (elapsed >= target)
+            break;
+        usleep(100);
+    }
 }

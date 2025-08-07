@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:08:50 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:12:13 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/07 20:20:20 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void *monitor_philosophers(void *arg)
                 return (NULL);
             i++;
         }
-        usleep(100);
+        ft_usleep(1000);
     }
     return (NULL);
 }
