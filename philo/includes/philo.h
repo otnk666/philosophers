@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/07 22:13:38 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/08 21:10:41 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <stdbool.h>
 #include <limits.h>
 
+#define TAKE_FORKS "has taken a fork"
 #define TAKE_FORKS "has taken a fork"
 #define THINKING "is thinking"
 #define SLEEPING "is sleeping"
@@ -45,8 +46,8 @@ typedef struct s_philo
     long last_meal_time;
     t_fork *left_fork;
     t_fork *right_fork;
-    t_fork *first_fork;
-    t_fork *second_fork;
+    // t_fork *first_fork;
+    // t_fork *second_fork;
     t_table *table;
 } t_philo;
 
