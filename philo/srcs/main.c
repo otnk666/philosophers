@@ -12,65 +12,66 @@
 
 #include "philo.h"
 
-int single_philo(t_table *table)
+int	single_philo(t_table *table)
 {
-    if (table->philo_count != 1)
-        return (0);
-    printf("0 1 has taken a fork\n");
-    usleep(table->time_to_die * 1000);
-    printf("%ld 1 died\n", table->time_to_die);
-    cleanup_table(table);
-    return (1);
+	if (table->philo_count != 1)
+		return (0);
+	printf("0 1 has taken a fork\n");
+	usleep(table->time_to_die * 1000);
+	printf("%ld 1 died\n", table->time_to_die);
+	cleanup_table(table);
+	return (1);
 }
 
-int create_threads(t_table *table, pthread_t *monitor, pthread_t *threads)
+int	create_threads(t_table *table, pthread_t *monitor, pthread_t *threads)
 {
-    int i;
+	int	i;
 
-    if (pthread_create(monitor, NULL, monitor_philosophers, table) != 0)
-        return (1);
-    i = 0;
-    while (i < table->philo_count)
-    {
-        if (pthread_create(&threads[i], NULL, philosopher_life, &table->philos[i]) != 0)
-            return (1);
-        i++;
-    }
-    return (0);
+	if (pthread_create(monitor, NULL, monitor_philosophers, table) != 0)
+		return (1);
+	i = 0;
+	while (i < table->philo_count)
+	{
+		if (pthread_create(&threads[i], NULL, philosopher_life,
+				&table->philos[i]) != 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-void join_threads(t_table *table, pthread_t monitor, pthread_t *threads)
+void	join_threads(t_table *table, pthread_t monitor, pthread_t *threads)
 {
-    int i;
+	int	i;
 
-    pthread_join(monitor, NULL);
-    i = 0;
-    while (i < table->philo_count)
-    {
-        pthread_join(threads[i],NULL);
-        i++;
-    }
+	pthread_join(monitor, NULL);
+	i = 0;
+	while (i < table->philo_count)
+	{
+		pthread_join(threads[i], NULL);
+		i++;
+	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    t_table *table;
-    pthread_t monitor;
-    pthread_t *threads;
+	t_table		*table;
+	pthread_t	monitor;
+	pthread_t	*threads;
 
-    if (check_arg(argc, argv))
-        return (1);
-    table = init_table(argc, argv);
-    if (!table)
-        return (1);
-    if (single_philo(table))
-        return (0);
-    init_philo(table);
-    threads = malloc(sizeof(pthread_t) * table->philo_count);
-    if(!threads || create_threads(table, &monitor, threads) != 0)
-        return (1);
-    join_threads(table, monitor, threads);
-    free(threads);
-    cleanup_table(table);
-    return (0);
+	if (check_arg(argc, argv))
+		return (1);
+	table = init_table(argc, argv);
+	if (!table)
+		return (1);
+	if (single_philo(table))
+		return (0);
+	init_philo(table);
+	threads = malloc(sizeof(pthread_t) * table->philo_count);
+	if (!threads || create_threads(table, &monitor, threads) != 0)
+		return (1);
+	join_threads(table, monitor, threads);
+	free(threads);
+	cleanup_table(table);
+	return (0);
 }

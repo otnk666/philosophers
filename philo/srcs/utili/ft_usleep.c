@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 17:45:26 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/11 23:52:56 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 17:03:25 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void ft_usleep(long time)
         elapsed = (current - start) * 1000;
         if (elapsed >= time)
             break;
+
         if (time - elapsed > 1000)
             usleep(500);
         else
-            usleep(100);
+            usleep(50);
     }
 }
