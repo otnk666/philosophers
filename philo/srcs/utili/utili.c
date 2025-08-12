@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 05:01:00 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/05 02:43:31 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:36:37 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void mutex_print(t_table *table, int id, char *action)
 {
     pthread_mutex_lock(&table->print_mutex);
     if (!table->simulation_end)
-        printf("%ld %d %s\n", get_time() - table->start_time, id, action);
+        printf("%lld %d %s\n", get_time() - table->start_time, id, action);
     pthread_mutex_unlock(&table->print_mutex);
 }
 

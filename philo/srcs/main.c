@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:56:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 13:30:11 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:34:17 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int single_philo(t_table *table)
         return (0);
     printf("0 1 has taken a fork\n");
     usleep(table->time_to_die * 1000);
-    printf("%d 1 died\n", table->time_to_die);
+    printf("%lld 1 died\n", table->time_to_die);
     cleanup_table(table);
     return (1);
 }
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     pthread_t monitor;
     pthread_t *threads;
 
-    if (check_arg(argc, *argv))
+    if (check_arg(argc, argv))
         return (1);
     table = init_table(argc, argv);
     if (!table)

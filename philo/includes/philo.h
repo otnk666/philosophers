@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 14:49:29 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:35:16 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_table t_table;
 
 typedef struct s_fork
 {
-    int id;
+    int64_t id;
     pthread_mutex_t mutex;
     int available;
     int last_used;
@@ -65,7 +65,7 @@ typedef struct s_table
     t_philo *philos;
 } t_table;
 
-int     check_arg(int ac, char *av);
+int     check_arg(int ac, char **av);
 int     error_msg(char *msg_type, char *error, char *msg);
 int     ft_fputs(char *s, int fd);
 int64_t     ft_atoi64(const char *str);

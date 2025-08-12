@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:16 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 14:50:18 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:36:06 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void init_forks(t_table *table)
 {
-    int i;
+    int64_t i;
     
     i = 0;
     while (i < table->philo_count)
@@ -33,7 +33,7 @@ void init_forks(t_table *table)
 
 void init_philo(t_table *table)
 {
-    int i;
+    int64_t i;
     
     i = 0;
     while (i < table->philo_count)

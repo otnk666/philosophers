@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 22:49:58 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 13:30:21 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:37:25 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int is_contains_non_digits(char *str)
     return (0);
 }
 
-int check_arg(int ac, char *av)
+int check_arg(int ac, char **av)
 {
     int i;
 
@@ -40,7 +40,7 @@ int check_arg(int ac, char *av)
     i = 1;
     while (i < ac)
     {
-        if (!is_contains_non_digits(av))
+        if (is_contains_non_digits(av[i]))
         {
             return (error_msg("Error", NULL, "Arguments must be positive integers only"));
         }
