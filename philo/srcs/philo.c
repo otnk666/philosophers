@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:07:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/07 18:47:20 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/11 23:29:20 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void philo_think(t_philo *philo)
 void philo_sleep(t_philo *philo)
 {
     mutex_print(philo->table, philo->id, SLEEPING);
-    usleep(philo->table->time_to_sleep * 1000);
+    ft_usleep(philo->table->time_to_sleep * 1000);
 }
 
 int check_continue(t_philo *philo)
@@ -48,7 +48,7 @@ void *philosopher_life(void *arg)
     
     philo = (t_philo *)arg;
     if (philo->id % 2 == 0)
-        usleep(50);    
+        usleep(100);    
     while(check_continue(philo))
     {
         philo_think(philo);

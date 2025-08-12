@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:16 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/08 21:10:48 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 14:50:18 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,6 @@ void init_philo(t_table *table)
         table->philos[i].last_meal_time = table->start_time;
         table->philos[i].left_fork = &table->forks[i];
         table->philos[i].right_fork = &table->forks[(i + 1) % table->philo_count];
-        // if (table->philos[i].left_fork->id < table->philos[i].right_fork->id)
-        // {
-        //     table->philos[i].first_fork = table->philos[i].left_fork;
-        //     table->philos[i].second_fork = table->philos[i].right_fork;
-        // }
-        // else
-        // {
-        //     table->philos[i].first_fork = table->philos[i].right_fork;
-        //     table->philos[i].second_fork = table->philos[i].left_fork;
-        // }
         table->philos[i].table = table;
         i++;
     }
@@ -60,12 +50,12 @@ void init_philo(t_table *table)
 
 int init_table_values(t_table *table, int argc, char **argv)
 {
-    table->philo_count = ft_atoi(argv[1]);
-    table->time_to_die = ft_atoi(argv[2]);
-    table->time_to_eat = ft_atoi(argv[3]);
-    table->time_to_sleep = ft_atoi(argv[4]);
+    table->philo_count = ft_atoi64(argv[1]);
+    table->time_to_die = ft_atoi64(argv[2]);
+    table->time_to_eat = ft_atoi64(argv[3]);
+    table->time_to_sleep = ft_atoi64(argv[4]);
     if (argc == 6)
-        table->must_eat_count = ft_atoi(argv[5]);
+        table->must_eat_count = ft_atoi64(argv[5]);
     else
         table->must_eat_count = -1;
     table->start_time = get_time();

@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 17:45:26 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/07 20:16:06 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/11 23:52:56 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void ft_usleep(long time)
 {
     long    start;
-    long    target;
     long    current;
     long    elapsed;
     
@@ -23,16 +22,15 @@ void ft_usleep(long time)
         return;
 
     start = get_time();
-    target = time;
-    if (time > 5000)
-        usleep((time - 2000));
-        
     while (1)
     {
         current = get_time();
         elapsed = (current - start) * 1000;
-        if (elapsed >= target)
+        if (elapsed >= time)
             break;
-        usleep(100);
+        if (time - elapsed > 1000)
+            usleep(500);
+        else
+            usleep(100);
     }
 }

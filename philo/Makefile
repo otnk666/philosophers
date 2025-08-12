@@ -12,6 +12,7 @@ SRCS =	$(SRCS_DIR)/main.c \
 		$(SRCS_DIR)/monitor.c \
 		$(SRCS_DIR)/philo.c \
 		$(SRCS_DIR)/philo_eat.c \
+		$(SRCS_DIR)/check.c \
 		$(SRCS_DIR)/clean.c \
 		$(SRCS_DIR)/error.c \
 		$(UTILI_DIR)/utili.c \

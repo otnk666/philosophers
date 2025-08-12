@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 19:56:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/06 21:24:42 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 13:30:11 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,8 @@ int main(int argc, char *argv[])
     pthread_t monitor;
     pthread_t *threads;
 
-    if (argc < 5 || argc > 6)
-    {
-        printf("Usage: ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
+    if (check_arg(argc, *argv))
         return (1);
-    }
     table = init_table(argc, argv);
     if (!table)
         return (1);

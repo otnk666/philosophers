@@ -6,16 +6,16 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 18:09:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/07/31 18:21:15 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:02:50 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+int64_t	ft_atoi64(const char *str)
 {
 	int			sign;
-	long long	result;
+	int64_t		result;
 
 	result = 0;
 	while ((*str >= 9 && *str <= 13) || *str == ' ')
@@ -29,14 +29,14 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (result > (LONG_MAX - (*str - '0')) / 10)
+		if (result > (INT64_MAX - (*str - '0')) / 10)
 		{
 			if (sign == 1)
-				return ((int)LONG_MAX);
-			return ((int)LONG_MIN);
+				return (INT64_MAX);
+			return (INT64_MIN);
 		}
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	return ((int)(result * sign));
+	return (result * sign);
 }

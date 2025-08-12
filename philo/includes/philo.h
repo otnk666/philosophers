@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/08 21:10:41 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/12 14:49:29 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,21 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-    int id;
+    int64_t id;
     int eat_count;
-    long last_meal_time;
+    int64_t last_meal_time;
     t_fork *left_fork;
     t_fork *right_fork;
-    // t_fork *first_fork;
-    // t_fork *second_fork;
     t_table *table;
 } t_philo;
 
 typedef struct s_table
 {
-    int philo_count;
-    long start_time;
-    int time_to_eat;
-    int time_to_sleep;
-    int time_to_die;
+    int64_t philo_count;
+    int64_t start_time;
+    int64_t time_to_eat;
+    int64_t time_to_sleep;
+    int64_t time_to_die;
     int simulation_end;
     int must_eat_count;
     
@@ -67,8 +65,10 @@ typedef struct s_table
     t_philo *philos;
 } t_table;
 
+int     check_arg(int ac, char *av);
+int     error_msg(char *msg_type, char *error, char *msg);
 int     ft_fputs(char *s, int fd);
-int     ft_atoi(const char *str);
+int64_t     ft_atoi64(const char *str);
 long    get_time(void);
 void    ft_usleep(long time);
 void    mutex_print(t_table *table, int id, char *action);
