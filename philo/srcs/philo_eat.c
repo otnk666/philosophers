@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 23:09:43 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 15:42:37 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 20:14:11 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	get_fork_priority(t_philo *philo)
 	{
 		philo->first = philo->right_fork;
 		philo->second = philo->left_fork;
+	}
+	if (philo->id == philo->table->philo_count)
+	{
+		if (philo->id % 2 == 1)
+		{
+			philo->first = philo->right_fork;
+			philo->second = philo->left_fork;
+		}
+		else
+		{
+			philo->first = philo->left_fork;
+			philo->second = philo->right_fork;
+		}
 	}
 }
 
@@ -73,8 +86,8 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->table->death_mutex);
 	philo->last_meal_time = get_time();
 	philo->eat_count++;
-	mutex_print(philo->table, philo->id, EATING);
 	pthread_mutex_unlock(&philo->table->death_mutex);
+	mutex_print(philo->table, philo->id, EATING);
 	ft_usleep(philo->table->time_to_eat * 1000);
 	release_forks(philo);
 }

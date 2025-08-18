@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 18:09:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 15:02:50 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 20:40:01 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int64_t	ft_atoi64(const char *str)
 {
-	int			sign;
-	int64_t		result;
+	int		sign;
+	int64_t	result;
 
 	result = 0;
 	while ((*str >= 9 && *str <= 13) || *str == ' ')

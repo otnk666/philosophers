@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:07:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 14:35:03 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 20:03:45 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	*philosopher_life(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	pthread_mutex_lock(&philo->table->death_mutex);
+	philo->last_meal_time = get_time();
+	pthread_mutex_unlock(&philo->table->death_mutex);
 	if (philo->id % 2 == 0)
 		ft_usleep(100);
 	while (check_continue(philo))

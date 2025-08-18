@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 15:28:52 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 20:49:04 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_philo
 	t_fork				*right_fork;
 	t_fork				*first;
 	t_fork				*second;
-	
 	t_table				*table;
 }						t_philo;
 
@@ -60,7 +59,6 @@ typedef struct s_table
 	int64_t				time_to_die;
 	int					simulation_end;
 	int					must_eat_count;
-
 	t_fork				*forks;
 	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		death_mutex;
@@ -82,8 +80,6 @@ int						set_simulation_end(t_table *table);
 void					*monitor_philosophers(void *arg);
 void					*philosopher_life(void *arg);
 void					cleanup_table(t_table *table);
-void					init_philo(t_table *table);
-t_table					*init_table(int argc, char **argv);
 void					philo_eat(t_philo *philo);
 
 #endif
