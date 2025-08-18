@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:07:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 23:34:07 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:35:03 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void	philo_sleep(t_philo *philo)
 	mutex_print(philo->table, philo->id, SLEEPING);
 	ft_usleep(philo->table->time_to_sleep * 1000);
 }
+
 int	check_continue(t_philo *philo)
 {
 	int	count;
-	
+
 	if (is_simulation_end(philo->table))
 		return (0);
 	if (philo->table->must_eat_count != -1)

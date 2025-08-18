@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:16 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 22:40:15 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:33:15 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	init_forks(t_table *table)
 	while (i < table->philo_count)
 	{
 		table->forks[i].id = i;
-		table->forks[i].available = 1;
-		table->forks[i].last_used = -1;
 		if (pthread_mutex_init(&table->forks[i].mutex, NULL) != 0)
 		{
 			ft_fputs("Error: fork mutex init failed\n", STDERR_FILENO);
@@ -44,6 +42,8 @@ void	init_philo(t_table *table)
 		table->philos[i].left_fork = &table->forks[i];
 		table->philos[i].right_fork = &table->forks[(i + 1)
 			% table->philo_count];
+		table->philos[i].first = table->philos[i].left_fork;
+		table->philos[i].first = table->philos[i].right_fork;
 		table->philos[i].table = table;
 		i++;
 	}

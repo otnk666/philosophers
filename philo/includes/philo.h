@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 22:39:56 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:28:52 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct s_fork
 {
 	int64_t				id;
 	pthread_mutex_t		mutex;
-	int					available;
-	int					last_used;
 }						t_fork;
 
 typedef struct s_philo
@@ -47,6 +45,9 @@ typedef struct s_philo
 	int64_t				last_meal_time;
 	t_fork				*left_fork;
 	t_fork				*right_fork;
+	t_fork				*first;
+	t_fork				*second;
+	
 	t_table				*table;
 }						t_philo;
 

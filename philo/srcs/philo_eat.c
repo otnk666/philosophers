@@ -6,11 +6,25 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 23:09:43 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/12 23:10:50 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:42:37 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	get_fork_priority(t_philo *philo)
+{
+	if (philo->id % 2 == 1)
+	{
+		philo->first = philo->left_fork;
+		philo->second = philo->right_fork;
+	}
+	else
+	{
+		philo->first = philo->right_fork;
+		philo->second = philo->left_fork;
+	}
+}
 
 int	get_fork_algo(t_philo *philo)
 {
@@ -19,16 +33,9 @@ int	get_fork_algo(t_philo *philo)
 
 	if (is_simulation_end(philo->table))
 		return (0);
-	if (philo->id % 2 == 1)
-	{
-		f1 = philo->left_fork;
-		f2 = philo->right_fork;
-	}
-	else
-	{
-		f1 = philo->right_fork;
-		f2 = philo->left_fork;
-	}
+	get_fork_priority(philo);
+	f1 = philo->first;
+	f2 = philo->second;
 	pthread_mutex_lock(&f1->mutex);
 	if (is_simulation_end(philo->table))
 	{
@@ -52,16 +59,9 @@ void	release_forks(t_philo *philo)
 	t_fork	*f1;
 	t_fork	*f2;
 
-	if (philo->id % 2 == 1)
-	{
-		f1 = philo->left_fork;
-		f2 = philo->right_fork;
-	}
-	else
-	{
-		f1 = philo->right_fork;
-		f2 = philo->left_fork;
-	}
+	get_fork_priority(philo);
+	f1 = philo->first;
+	f2 = philo->second;
 	pthread_mutex_unlock(&f2->mutex);
 	pthread_mutex_unlock(&f1->mutex);
 }
