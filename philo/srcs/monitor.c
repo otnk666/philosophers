@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:08:50 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 20:12:30 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/20 23:22:53 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,18 @@ int	check_all_finished(t_table *table)
 
 int	check_philo_death(t_table *table, int i)
 {
-	long	current_time;
+	long	current;
+	long	start;
 
-	current_time = get_time();
+	current = get_time();
 	pthread_mutex_lock(&table->death_mutex);
-	if (current_time - table->philos[i].last_meal_time > table->time_to_die
+	start = table->start_time;
+	if (current - table->philos[i].last_meal_time > table->time_to_die
 		&& !table->simulation_end)
 	{
+		printf("%ld %ld died\n", current - start, table->philos[i].id);
 		table->simulation_end = 1;
 		pthread_mutex_unlock(&table->death_mutex);
-		mutex_print(table, table->philos[i].id, DIED);
 		return (1);
 	}
 	pthread_mutex_unlock(&table->death_mutex);

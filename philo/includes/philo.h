@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 20:49:04 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/29 19:51:48 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_table
 int						check_arg(int ac, char **av);
 int						error_msg(char *msg_type, char *error, char *msg);
 int						ft_fputs(char *s, int fd);
+int						ft_strlen(char *str);
+int						ft_strcmp(char *s1, char *s2);
 int64_t					ft_atoi64(const char *str);
 t_table					*init_table(int argc, char **argv);
 void					init_forks(t_table *table);

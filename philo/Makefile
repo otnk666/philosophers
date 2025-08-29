@@ -6,13 +6,13 @@
 #    By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 15:41:54 by skomatsu          #+#    #+#              #
-#    Updated: 2025/08/13 15:50:25 by skomatsu         ###   ########.fr        #
+#    Updated: 2025/08/29 19:52:39 by skomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= philo
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -pthread
+CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=address
 SRCS_DIR	= ./srcs
 UTILI_DIR	= ./srcs/utili
 INC_DIR		= ./includes
@@ -31,7 +31,10 @@ SRCS =	$(SRCS_DIR)/main.c \
 		$(UTILI_DIR)/utili.c \
 		$(UTILI_DIR)/ft_atoi.c \
 		$(UTILI_DIR)/ft_fputs.c \
-		$(UTILI_DIR)/ft_usleep.c
+		$(UTILI_DIR)/ft_usleep.c \
+		$(UTILI_DIR)/ft_strcmp.c \
+		$(UTILI_DIR)/ft_strlen.c \
+		
 
 
 OBJS = $(SRCS:.c=.o)
@@ -53,12 +56,4 @@ fclean: clean
 
 re: fclean all
 
-test: $(NAME)
-	./$(NAME) 5 800 200 200
-	./$(NAME) 4 410 200 200
-	./$(NAME) 1 800 200 200
-
-valgrind: $(NAME)
-
-
-.PHONY : all clean fclean re test 
+.PHONY : all clean fclean re

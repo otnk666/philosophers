@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 22:49:58 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 14:23:38 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/29 20:25:29 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ int	is_contains_non_digits(char *str)
 	return (0);
 }
 
+int	is_over;
+
 int	check_arg(int ac, char **av)
 {
-	int	i;
+	int		i;
+	int64_t	value;
 
 	if (ac != 5 && ac != 6)
 	{
@@ -44,8 +47,27 @@ int	check_arg(int ac, char **av)
 		if (is_contains_non_digits(av[i]))
 		{
 			return (error_msg("Error", NULL,
-					"Arguments must be positive integers only"));
+					"Arguments must be positive integers"));
 		}
+		value = ft_atoi64(av[i]);
+       if (value == INT64_MAX)
+        {
+            if (ft_strcmp(av[i], "9223372036854775807") != 0)
+            {
+                return (error_msg("Error", NULL,
+                        "Arguments exceed maximum allowed value"));
+            }
+        }
+        else if (value == INT64_MIN)
+        {
+            if (ft_strcmp(av[i], "-9223372036854775808") != 0)
+            {
+                return (error_msg("Error", NULL,
+                        "Arguments exceed maximum allowed value"));
+            }
+        }
+		if (value <= 0)
+			return (error_msg("Error", NULL, "Arguments must be at least 1"));
 		i++;
 	}
 	return (0);

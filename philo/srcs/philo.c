@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 16:07:52 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 20:03:45 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/20 23:24:26 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,26 @@ void	philo_sleep(t_philo *philo)
 	ft_usleep(philo->table->time_to_sleep * 1000);
 }
 
-int	check_continue(t_philo *philo)
+int	can_eat_more(t_philo *philo)
 {
-	int	count;
+	int	eat_count;
+	int	must_count;
 
-	if (is_simulation_end(philo->table))
-		return (0);
-	if (philo->table->must_eat_count != -1)
-	{
-		pthread_mutex_lock(&philo->table->death_mutex);
-		if (philo->table->simulation_end)
-		{
-			pthread_mutex_unlock(&philo->table->death_mutex);
-			return (0);
-		}
-		count = philo->eat_count;
-		pthread_mutex_unlock(&philo->table->death_mutex);
-		if (count >= philo->table->must_eat_count)
-			return (0);
-	}
-	return (1);
+	pthread_mutex_lock(&philo->table->death_mutex);
+	eat_count = philo->eat_count;
+	must_count = philo->table->must_eat_count;
+	pthread_mutex_unlock(&philo->table->death_mutex);
+	if (must_count == -1)
+		return (1);
+	if (eat_count < must_count)
+		return (1);
+	return (0);
+}
+
+void	think_wait_death(t_philo *philo)
+{
+	while (!is_simulation_end(philo->table))
+		ft_usleep(10000);
 }
 
 void	*philosopher_life(void *arg)
@@ -56,13 +56,16 @@ void	*philosopher_life(void *arg)
 	pthread_mutex_unlock(&philo->table->death_mutex);
 	if (philo->id % 2 == 0)
 		ft_usleep(100);
-	while (check_continue(philo))
+	while (!is_simulation_end(philo->table))
 	{
 		philo_think(philo);
-		if (!check_continue(philo))
+		if (is_simulation_end(philo->table))
 			break ;
-		philo_eat(philo);
-		if (!check_continue(philo))
+		if (can_eat_more(philo))
+			philo_eat(philo);
+		else
+			think_wait_death(philo);
+		if (is_simulation_end(philo->table))
 			break ;
 		philo_sleep(philo);
 	}
