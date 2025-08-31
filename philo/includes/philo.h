@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:14:48 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/31 14:43:11 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/31 15:38:06 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define TAKE_FORKS "has taken a fork"
 # define TAKE_FORKS "has taken a fork"
 # define THINKING "is thinking"
 # define SLEEPING "is sleeping"
