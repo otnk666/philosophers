@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:16 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/18 20:06:49 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/08/31 14:21:51 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_forks(t_table *table)
 		table->forks[i].id = i;
 		if (pthread_mutex_init(&table->forks[i].mutex, NULL) != 0)
 		{
-			ft_fputs("Error: fork mutex init failed\n", STDERR_FILENO);
+			error_msg("Error", NULL, "fork mutex init failed");
 			return ;
 		}
 		i++;
