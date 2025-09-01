@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 23:09:43 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/20 23:18:08 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:07:20 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,6 @@ void	get_fork_priority(t_philo *philo)
 	{
 		philo->first = philo->right_fork;
 		philo->second = philo->left_fork;
-	}
-	if (philo->id == philo->table->philo_count)
-	{
-		if (philo->id % 2 == 1)
-		{
-			philo->first = philo->right_fork;
-			philo->second = philo->left_fork;
-		}
-		else
-		{
-			philo->first = philo->left_fork;
-			philo->second = philo->right_fork;
-		}
 	}
 }
 

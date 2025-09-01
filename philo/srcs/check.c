@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 22:49:58 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/08/31 15:13:35 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:19:53 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	is_contains_non_digits(char *str)
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
 		{
-			return (error_msg("Error", NULL,
-					"Arguments must be positive integers"));
+			return (1);
 		}
 		i++;
 	}
