@@ -6,13 +6,13 @@
 #    By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/13 15:41:54 by skomatsu          #+#    #+#              #
-#    Updated: 2025/08/29 19:52:39 by skomatsu         ###   ########.fr        #
+#    Updated: 2025/09/02 17:27:18 by skomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= philo
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -pthread -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -pthread
 SRCS_DIR	= ./srcs
 UTILI_DIR	= ./srcs/utili
 INC_DIR		= ./includes
